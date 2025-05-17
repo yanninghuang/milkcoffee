@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>问卷调查</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <img src="./e019b4d2-1c72-49e1-b47f-ba974c22a795.png" alt="双心" class="decor-heart">
+    <img src="./a59bae2c-c043-41fa-bdd1-16b2a24c6b0f.png" alt="床" class="decor-bed">
+    <img src="./dd65d4c3-650a-4cda-bb4f-e90e36be7e5b.png" alt="小熊" class="decor-bear">
+    <div class="header">问卷调查</div>
+    <div class="question-box" id="question-box">
+    </div>
+    <div class="footer">
+      <button onclick="prevQuestion()" id="prev-btn">上一题</button>
+      <button onclick="nextQuestion()" id="next-btn">下一题</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: `<pre>
+    /\\_____\/\\  
+   /  o   o  \\ 
+  ( ==  ^  == )
+   )         ( 
+  (           )
+ ( (  )   (  ) )
+(__(__)___(__)__)
+</pre>`,
+        options: ["meow", "喵", "汪"]
+      },
+            {
+  text: `未完成的奇幻小说名叫`,
+  options: ["《地下室的猫咪》", "《地下室的怪人》","《脑髓地狱》", "《化身博士》"]
+},
+      {
+  text: `川濑把你心爱的原稿烧了，你该怎么办？`,
+  options: ["写份新的给他烧", "反正也没人读", "问他：“你手滑了？”", "问他刷卡还是现金赔付"]
+},
+      {
+  text: `川濑说的哪一句话，最真实可信`,
+  options: ["水上喜欢你", "你是特别的", "你蠢吗", "我喜欢玉森君认真写稿的样子"]
+},
+      {
+  text: `川濑要和花泽见面，留你一个人在家，你会怎么做？`,
+  options: ["告诉他：你去吧，去了就别回来了", "把门反锁，钥匙喂蛙男", "晚上给川濑打电话：你跟花泽好好玩，不用担心我，我等你回来", "打电话给水上说：他走了，你快来吧"]
+},
+      {
+  text: `吵架时哪个选择是正确的：`,
+  options: ["摔门而出，然后睡桥洞", "翻旧账一味指责他", "不假思索地扇了川濑一巴掌", "做一些事情来气他"]
+},
+      {
+  text: `玉森君，我和可尔思必谁更重要`,
+  options: ["包可尔思必的", "可尔思必蛋包饭", "可尔思必和川濑", "都重要"]
+},
+      {
+  text: `咖啡厅放的爵士乐唱片是`,
+  options: ["Regardemoi", "看着我"]
+},
+      {
+  text: `以下哪种行为代表川濑生气了`,
+  options: ["不说话，只是默默抽烟", "问你：“我跟xx谁比较重要”", "彻夜不归", "把你当成狗一样玩弄戏耍"]
+},
+      {
+  text: `当被川濑问到你还喜欢我吗`,
+  options: ["我们不是挚友吗", "今天又吃错什么药了", "我喜欢你，川濑", "我想三个人一起去东洋电影院"]
+},
+      {
+  text: `川濑最喜欢你干什么`,
+  options: ["给他看原稿", "对他撒娇", "骑在他身上乱亲","呼吸"]
+},
+      {
+  text: `如果你能靠着被上野的男妓玩弄写出佳作，你肯定会这么干。`,
+  options: ["不同意", "同意", "严重同意"]
+},
+      {
+  text: `构成侮辱罪的是`,
+  options: ["店主经死者同意，将死者遗体挂到桥上当雨天娃娃", "川濑把养父分尸丢进井里", "参加水上葬礼时问玉森水上怎么没来"]
+},
+      {
+  text: `如果你是第一天上幼稚园的小朋友，川濑没接你回家是因为`,
+  options: ["他忘了你上几年级", "不要你了", "川濑这么做肯定有他的道理"]
+},
+      {
+  text: `“大洋里所有的水，能洗净我手上的血迹吗？不，相反，我这沾满鲜血的手，恐怕会把那无边无际的海水染成一片殷红。”出自`,
+  options: ["麦克白","李尔王","第十二夜"]
+},
+      {
+  text: `怎样评价水森玉的作品`,
+  options: ["史", "那很好了","差评如潮"]
+},
+      {
+  text: `川濑是畜生，但只对你这样。`,
+  options: ["Yes", "No"]
+},
+      {
+  text: `他不喜欢脏的。`,
+  options: ["Yes", "No","我上完厕所后都不洗手"]
+},
+      {
+  text: `他喜欢你是因为你被欺负的样子很可怜。`,
+  options: ["Yes", "No"]
+},
+      {
+  text: `其实川濑很喜欢你写的小说，他只是嘴上不说而已。`,
+  options: ["Yes", "No"]
+},
+      {
+  text: `pay lip service表达`,
+  options: ["嘴上说说", "敷衍", "提供口头支持", "付一个亲亲"]
+},
+      {
+  text: `下列构成寻衅滋事罪的是`,
+  options: ["问大崎你有兄弟姐妹吗", "对大崎说我想跟你成为兄弟", "问汐留你养父怎么死的", "跟竹芝玩sm安全词是三流"]
+},
+      {
+  text: `古希腊悲剧中，于无知中犯了杀父娶母罪行的英雄是`,
+  options: ["伊阿宋", "俄狄浦斯", "赫拉克勒斯"]
+},
+      {
+  text: `不属于莎士比亚四大悲剧的是`,
+  options: ["哈姆莱特", "麦克白", "奥赛罗","罗密欧与朱丽叶"]
+},
+      {
+  text: `欧文是`,
+  options: ["邪恶的北魔法使", "贤者的魔法使", "敌人", "朋友"]
+},
+      {
+  text: `地狱三头犬叫什么名字`,
+  options: ["刻耳柏洛斯", "凯因奈特雷", "布拉德利", "以上都是"]
+},
+      {
+  text: `你是骑士吧`,
+  options: ["是", "不是", "已经不是了"]
+},
+      {
+  text: `我讨厌`,
+  options: ["蜂蜜与朝阳的光辉融化混合在一起", "金丝雀的羽毛", "你的眼睛", "声音", "全部都讨厌"]
+},
+      {
+  text: `你喜欢在性生活中被语言羞辱或者辱骂。`,
+  options: ["同意", "严重同意"]
+},
+{text:'性的开心', options: ["1","2", "3","4"]},
+{text:'我觉得你', options: ["干净","美丽", "きれい"]},
+      {
+  text: '我会对你好的(一直欺负你)',
+  options: [
+  '<img src="./heart.png" alt="爱心">',
+  '<img src="./face.png" alt="小脸">',
+  '<img src="./dog.png"" alt="狗狗">', 
+]
+},
+      {
+  text: `猫一直响是`,
+  options: ["饿了", "烦了", "想你了"]
+},
+      {
+  text: `我的星座`,
+  options: ["水瓶", "双鱼", "巨蟹", "双子"]
+},
+      {
+  text: `我的血型`,
+  options: ["A", "B", "AB", "O"]
+},
+      {
+  text: `你吸引我的点是`,
+  options: ["脾气大", "难伺候", "睡得多", "会卖萌"]
+},
+      {
+  text: `甜糖3：00跟我说晚安她几点睡`,
+  options: ["3：01", "3：30", "不睡"]
+},
+      {
+  text: `这时候有人就要说了，甜糖怎么这么可爱啊`,
+  options: ["o_O", '<img src="./love.png" alt="爱心">']
+},
+      {
+  text: `我喜欢你在我的世界里`,
+  options: ["我想到了你", "梦到了你","谈到了你"]
+},
+      {
+  text: `Shall I compare thee to a summer's day?`,
+  options: ["我 能否将你比作夏日", "的一天？", "你可是更加可爱，更加温婉……"]
+},
+      {
+  text: `每天见到你都很开心哦`,
+  options: ["Yes."]
+},
+      {
+  text: `你也是一样的心情吧`,
+  options: ["Yes."]
+},
+      {
+  text: `一直陪着我吧`,
+  options: ["Yes."]
+},
+      {
+  text: `每天都要在一起`,
+  options: ["Yes."]
+},
+      {
+  text: `我喜欢你`,
+  options: ["我喜欢你","我最喜欢你"]
+},
+      {
+  text: `我们是恋人吗`,
+  options: ["Yes","No"]
+},
+      {
+  text: `恋爱纪念日是`,
+  options: ["今天"]
+}]
+
+    let currentIndex = 0;
+    const answers = [];
+    const questionBox = document.getElementById('question-box');
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      let optionsHTML = q.options.map((opt, idx) => `
+        <label><input type="radio" name="q${currentIndex}" value="${opt}"> ${opt}</label>
+      `).join('');
+      questionBox.innerHTML = `
+  <div class="question">
+    <div class="question-index">${currentIndex + 1}.</div>
+    <div class="question-content">${q.text}<br>${optionsHTML}</div>
+  </div>
+`;
+    }
+
+function nextQuestion() {
+  const q = questions[currentIndex];
+  let answer = "";
+
+  // 📌 判断题型：问答题 vs 单选题
+  if (q.type === "text") {
+    const input = document.getElementById("text-answer");
+    if (!input || !input.value.trim()) {
+      showAlert("请填写你的答案再继续。");
+      return;
+    }
+    answer = input.value.trim();
+  } else {
+    const selected = document.querySelector(`input[name="q${currentIndex}"]:checked`);
+    if (!selected) {
+      showAlert('请先选择一个选项再继续。');
+      return;
+    }
+    answer = selected.value;
+  }
+
+  // 🎯 特定处理：第19题（索引18）+ 特定选项
+  if (q.text.includes("It's always been you.") && answer === "Can you say it again?") {
+    showAlert("你已经沉浸在自己的幻想里了", () => {
+      answers.push(answer);
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+    return;
+  }
+
+    if (
+    q.text.includes("你是骑士吧") &&
+    (answer === "不是" || answer === "已经不是了")
+  ) {
+    showAlert("哼");
+    return;
+  }
+
+      if (
+    q.text.includes("欧文是") &&
+    (answer === "朋友")
+  ) {
+    showAlert("才不是吧");
+    return;
+  }
+
+  // 正常处理流程
+  answers.push(answer);
+  currentIndex++;
+  if (currentIndex < questions.length) {
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  // 隐藏按钮
+  document.getElementById('prev-btn').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+
+  // 显示满分结果内容
+  questionBox.innerHTML = `
+    <div class="result-screen">
+      <h2>🎉 恭喜你获得了满分！</h2>
+      <p>你的人生难得有爬上去当回第一名的时候，不抓紧高兴一下吗</strong></p>
+    </div>
+  `;
+}
+
+
+
+
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    }
+
+function showAlert(message, callback) {
+  const alertBox = document.getElementById('custom-alert');
+  document.getElementById('alert-text').textContent = message;
+  alertBox.classList.remove('hidden');
+
+  const confirmButton = document.getElementById('alert-confirm');
+
+  // 清除旧的点击事件（避免叠加）
+  confirmButton.replaceWith(confirmButton.cloneNode(true));
+  const newButton = document.getElementById('alert-confirm');
+  newButton.onclick = () => {
+    alertBox.classList.add('hidden');
+    if (callback) callback();
+  };
+}
+
+
+
+function closeAlert() {
+  document.getElementById('custom-alert').classList.add('hidden');
+}
+
+
+    renderQuestion();
+  </script>
+
+<div id="custom-alert" class="hidden">
+  <img src="./hitokoto.png" class="bubble-bg">
+  <span id="alert-text">这是提示内容</span>
+  <button id="alert-confirm">确定</button> <!-- 注意：加了 id -->
+</div>
+
+
+
+
+</body>
+</html>
