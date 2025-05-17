@@ -15,7 +15,7 @@ body {
   justify-content: center;
   align-items: flex-start; /* ← 从顶部开始布局，不居中 */
   
-  padding-top: 120px;        /* ← 控制“往上挪”多少，可调 */
+  padding-top: 300px;        /* ← 控制“往上挪”多少，可调 */
   padding-bottom: 20px;     /* 给底部一点余地 */
   min-height: 100vh;
   box-sizing: border-box;
