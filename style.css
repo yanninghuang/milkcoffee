@@ -30,7 +30,6 @@ body {
   position: relative;
 }
 
-
 .header {
   height: 60px;
   padding: 10px;
@@ -187,6 +186,6 @@ label {
 }
 
 body {
-  transform: scale(1.4);
+  transform: scale(1.5);
   transform-origin: top center;
 }
