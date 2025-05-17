@@ -156,3 +156,31 @@ label {
   font-family: 'CustomPixelFont';
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 95vw;
+  }
+
+  .question-box {
+    font-size: 28px;
+  }
+
+  label {
+    font-size: 26px;
+  }
+
+  #next-btn,
+  #prev-btn {
+    font-size: 24px;
+    padding: 10px 28px;
+  }
+
+  .header {
+    font-size: 36px;
+  }
+
+  .question-index {
+    font-size: 28px;
+  }
+}
