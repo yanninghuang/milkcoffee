@@ -191,7 +191,8 @@ label {
   }
 }
 
-body {
-  transform: scale(2);
-  transform-origin: top center;
+.container {
+  width: 500px;
+  transform: scale(1.4);
+  transform-origin: top center; /* 从上方放大，不偏移 */
 }
