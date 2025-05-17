@@ -10,7 +10,6 @@ body {
   background-image: url('./f8c27943-7aef-418a-8437-8e3444c43ce4.png');
   background-size: 300px 300px;
   background-repeat: repeat;
-
   display: flex;
   justify-content: center;
   align-items: flex-start; /* ← 从顶部开始布局，不居中 */
@@ -29,6 +28,7 @@ body {
   background-color: #fff7ff;
   box-shadow: inset -4px -4px 0 #0000cc;
   padding: 0;
+  margin: 0 auto;
   text-align: left;
   image-rendering: pixelated;
   background-image: url('./ad2250fb-3c36-44a9-9844-7265ff41dbef.png');
