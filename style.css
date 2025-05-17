@@ -193,6 +193,6 @@ label {
 
 .container {
   width: 500px;
-  transform: scale(1.4);
+  transform: scale(1.7);
   transform-origin: top center; /* 从上方放大，不偏移 */
 }
