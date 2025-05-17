@@ -184,3 +184,8 @@ label {
     font-size: 28px;
   }
 }
+
+body {
+  transform: scale(1.4);
+  transform-origin: top center;
+}
